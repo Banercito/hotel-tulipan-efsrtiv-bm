@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Administración de cargos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="comun/menu.html"></div>
+<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
+<div class="container my-2">
+  <h1>Listado de Pagos</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id de Pago </th>
+      <th>Fecha de pago</th>
+      <th>Metodo de pago</th>
+      <th>Monto de pago</th>
+      <th>Huesped pagador </th>
+
+      <th>Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pago : ${listaPagos}">
+      <td th:text="${pago.getIdPago()}"></td>
+      <td th:text="${pago.getFechaPago()}"></td>
+      <td th:text="${pago.getMetodoPago()()}"></td>
+      <td th:text="${pago.getMonto()}"></td>
+      <td th:text="${pago.reserva.getHuesped()}"></td>
+      <td>
+        <a th:href="@{/proveedores/actualizarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-primary">Actualizar</a>
+        <a th:href="@{/proveedores/eliminarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-danger">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

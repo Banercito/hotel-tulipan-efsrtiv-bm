@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Administración de Huéspedes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="comun/menu.html"></div>
+<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
+
+<div class="container my-2">
+  <form th:action="@{/huespedes/busquedaHuesped}" method="get">
+    <label for="filtro">Buscar</label>
+    <input type="text" id="filtro" name="filtro" th:value="${filtro != null ? filtro : ''}" placeholder="Ingresa el filtro aquí">
+    <button type="submit" class="btn btn-primary btn-sm mb-2">Buscar</button>
+  </form>
+  <hr>
+  <h1>Listado de Huéspedes</h1>
+  <a th:href="@{/huespedes/nuevoHuesped}" class="btn btn-primary btn-sm mb-3"> Nuevo Huésped </a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Documento de Identidad</th>
+      <th>Correo Electrónico</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
+
+      <th>Fecha Nacimiento</th>
+      <th>Estado</th>
+      <th>Fecha Registro</th>
+      <th>Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="huesped : ${listaHuespedes}">
+      <td th:text="${huesped.getIdHuesped()}"></td>
+      <td th:text="${huesped.getNombre()}"></td>
+      <td th:text="${huesped.getApellido()}"></td>
+      <td th:text="${huesped.getNumeroDocumento()}"></td>
+      <td th:text="${huesped.getCorreo()}"></td>
+      <td th:text="${huesped.getDireccion()}"></td>
+      <td th:text="${huesped.getTelefono()}"></td>
+      <td th:text="${#dates.format(huesped.getFechaNac(), 'yyyy-MM-dd')}"></td>
+      <td th:text="${huesped.getEstado()}"></td>
+      <td th:text="${#dates.format(huesped.getFechaReg(), 'yyyy-MM-dd')}"></td>
+
+      <td>
+        <a th:href="@{/huespedes/actualizarHuesped/{id}(id=${huesped.idHuesped})}" class="btn btn-primary">Actualizar</a>
+        <a th:href="@{/huespedes/eliminarHuesped/{id}(id=${huesped.idHuesped})}" class="btn btn-danger">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administración de cargos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="comun/menu.html"></div>
+<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
+<div class="container my-2">
+    <h1>Listado de Cargos</h1>
+    <a th:href="@{/cargos/nuevoCargo}" class="btn btn-primary btn-sm mb-3">Nuevo Cargo</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombre del Cargo</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cargo : ${listaCargos}">
+            <td th:text="${cargo.getIdCargo()}"></td>
+            <td>
+                <a th:href="@{/proveedores/actualizarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-primary">Actualizar</a>
+                <a th:href="@{/proveedores/eliminarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

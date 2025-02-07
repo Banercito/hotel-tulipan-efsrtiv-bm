@@ -1,0 +1,118 @@
+<div id="nav">
+  <ul class="navbar">
+    <li>
+      <div class="logo-section">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRajK9r52PeZTeKCzbfwhCyOg69NzjGxEirBg&s" id="imgLogo" alt="Logo del Hotel">
+        <label class="hotel-name">Hotel Tulipán</label>
+      </div>
+    </li>
+    <li><a th:href="@{/empleados/listarEmpleados}">Empleados</a></li>
+    <li><a th:href="@{/postulantes/listarPostulantes}">Postulantes</a></li>
+    <li><a th:href="@{/vacantes/listarVacantes}">Vacantes</a></li>
+    <li><a th:href="@{/proveedores/listarProveedores}">Proveedores</a></li>
+    <li><a th:href="@{/huespedes/listarHuespedes}">Huéspedes</a></li>
+    <li><a th:href="@{/solicitudes/listarSolicitudes}">Servicios adicionales</a></li>
+    <li><a th:href="@{/proveedores/listarProveedores}">Reserva</a></li>
+    <li><a th:href="@{/proveedores/listarProveedores}">Suministros</a></li>
+
+
+    <li class="logout">
+      <a th:href="@{/acceso/logout}">
+        <img src="http://imgfz.com/i/nyd9eNg.png" alt="Logout Icon" class="logout-icon">
+        Logout
+      </a>
+    </li>
+  </ul>
+</div>
+
+<style>
+  /* Estilos generales del navbar */
+  .navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #007bff; /* Fondo azul */
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  /* Sección del logo y nombre del hotel */
+  .logo-section {
+    display: flex;
+    align-items: center;
+  }
+
+  #imgLogo {
+    width: 50px; /* Ajusta el tamaño del logo */
+    margin-right: 10px;
+  }
+
+  .hotel-name {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+
+  /* Estilos de los links */
+  .navbar li a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+  }
+
+  .navbar li a:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+    border-radius: 5px;
+  }
+
+  /* Estilos del icono y link de logout */
+  .logout {
+    float: right;
+  }
+
+  .logout-icon {
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  /* Estilo para hacer el navbar responsive */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .navbar li {
+      margin-bottom: 10px;
+    }
+
+    .logout {
+      float: none;
+    }
+  }
+
+  #nav li ul {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    color: black;
+  }
+
+  #nav li:hover ul {
+    display: block;
+    z-index: 1;
+  }
+
+  #nav li ul li {
+    float: none;
+    display: block;
+  }
+  .navbar li .sub-menu2 {
+    color: aqua;
+  }
+</style>
