@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <title>Administración de solicitudes</title>
@@ -18,48 +20,51 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<div class="container my-2">
+<div class="containerDiv">
   <h1>Listado de Solicitudes</h1>
-  <a th:href="@{/solicitudes/nuevoSolicitud}" class="btn btn-primary btn-sm mb-3">Nueva Solicitud</a>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Nombre del huésped</th>
-      <th>Apellido del huésped</th>
-      <th>Correo Electrónico</th>
-      <th>Teléfono del huésped</th>
-      <th>Cantidad de huéspedes</th>
-      <th>Fecha de inicio de reserva</th>
-      <th>Fecha fin de reserva</th>
-      <th>Código de habitación</th>
-      <th>Tipo de habitación</th>
-      <th>Nombre del servicio adicional</th>
-      <th>Precio del servicio adicional</th>
-      <th>Estado del servicio adicional</th>
-      <th>Acción</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="SolicitudDeServicios : ${listaSolicitudes}">
-      <td th:text="${SolicitudDeServicios.reserva.huesped.getNombre()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.huesped.getApellido()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.huesped.getCorreo()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.huesped.getTelefono()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.getCantidadHuespedes()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.getFechaInicio()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.getFechaFin()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.habitacion.getIdHabitacion()}"></td>
-      <td th:text="${SolicitudDeServicios.reserva.habitacion.getTipo()}"></td>
-      <td th:text="${SolicitudDeServicios.servicioAdicional.getNombre()}"></td>
-      <td th:text="${SolicitudDeServicios.servicioAdicional.getPrecioVenta()}"> </td>
-      <td th:text="${SolicitudDeServicios.getEstado()}"></td>
-      <td>
-        <a th:href="@{/solicitudes/listarSolicitudes}" class="btn btn-primary">Actualizar</a>
-        <a th:href="@{/solicitudes/listarSolicitudes}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <a th:href="@{/solicitudes/nuevoSolicitud}" class="btn  action-button  btn-sm mb-3 new-actor">Nueva Solicitud</a>
+  <div class="table-content card-glass">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Nombre del huésped</th>
+        <th>Apellido del huésped</th>
+        <th>Correo Electrónico</th>
+        <th>Teléfono del huésped</th>
+        <th>Cantidad de huéspedes</th>
+        <th>Fecha de inicio de reserva</th>
+        <th>Fecha fin de reserva</th>
+        <th>Código de habitación</th>
+        <th>Tipo de habitación</th>
+        <th>Nombre del servicio adicional</th>
+        <th>Precio del servicio adicional</th>
+        <th>Estado del servicio adicional</th>
+        <th>Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="SolicitudDeServicios : ${listaSolicitudes}">
+        <td th:text="${SolicitudDeServicios.reserva.huesped.getNombre()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.huesped.getApellido()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.huesped.getCorreo()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.huesped.getTelefono()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.getCantidadHuespedes()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.getFechaInicio()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.getFechaFin()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.habitacion.getIdHabitacion()}"></td>
+        <td th:text="${SolicitudDeServicios.reserva.habitacion.getTipo()}"></td>
+        <td th:text="${SolicitudDeServicios.servicioAdicional.getNombre()}"></td>
+        <td th:text="${SolicitudDeServicios.servicioAdicional.getPrecioVenta()}"> </td>
+        <td th:text="${SolicitudDeServicios.getEstado()}"></td>
+        <td class="table-action-button">
+          <a th:href="@{/solicitudes/listarSolicitudes}" class="btn btn-primary">Actualizar</a>
+          <a th:href="@{/solicitudes/listarSolicitudes}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 </body>
 </html>

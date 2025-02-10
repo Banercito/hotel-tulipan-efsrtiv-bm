@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Administración de cargos</title>
@@ -7,27 +9,30 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
-<div class="container my-2">
+<h3>¡Hola, <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>! Tu espacio de gestión está listo.😊</h3>
+<div class="containerDiv">
     <h1>Listado de Cargos</h1>
     <a th:href="@{/cargos/nuevoCargo}" class="btn btn-primary btn-sm mb-3">Nuevo Cargo</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Nombre del Cargo</th>
-            <th>Acción</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cargo : ${listaCargos}">
-            <td th:text="${cargo.getIdCargo()}"></td>
-            <td>
-                <a th:href="@{/proveedores/actualizarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-primary">Actualizar</a>
-                <a th:href="@{/proveedores/eliminarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-content card-glass">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nombre del Cargo</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cargo : ${listaCargos}">
+                <td th:text="${cargo.getIdCargo()}"></td>
+                <td>
+                    <a th:href="@{/proveedores/actualizarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-primary">Actualizar</a>
+                    <a th:href="@{/proveedores/eliminarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 </body>
 </html>

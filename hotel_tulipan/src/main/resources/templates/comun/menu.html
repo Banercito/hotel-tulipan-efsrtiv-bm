@@ -1,11 +1,15 @@
-<div id="nav">
-  <ul class="navbar">
-    <li>
-      <div class="logo-section">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRajK9r52PeZTeKCzbfwhCyOg69NzjGxEirBg&s" id="imgLogo" alt="Logo del Hotel">
-        <label class="hotel-name">Hotel Tulipán</label>
+<nav id="nav">
+  <div class="menu-container">
+    <div class="logo-section">
+      <div id="imgLogo">
+        <img src="/images/iconoHotel.PNG"  alt="Logo del Hotel">
       </div>
-    </li>
+      <label class="hotel-name">Hotel Tulipán</label>
+    </div>
+    <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+  </div>
+
+  <ul class="navbar">
     <li><a th:href="@{/empleados/listarEmpleados}">Empleados</a></li>
     <li><a th:href="@{/postulantes/listarPostulantes}">Postulantes</a></li>
     <li><a th:href="@{/vacantes/listarVacantes}">Vacantes</a></li>
@@ -14,40 +18,70 @@
     <li><a th:href="@{/solicitudes/listarSolicitudes}">Servicios adicionales</a></li>
     <li><a th:href="@{/proveedores/listarProveedores}">Reserva</a></li>
     <li><a th:href="@{/proveedores/listarProveedores}">Suministros</a></li>
-
-
     <li class="logout">
-      <a th:href="@{/acceso/logout}">
+      <a th:href="@{/acceso/logout}" class="buttonLogOut">
         <img src="http://imgfz.com/i/nyd9eNg.png" alt="Logout Icon" class="logout-icon">
         Logout
       </a>
     </li>
   </ul>
-</div>
-
+</nav>
+<div id="loader">Cargando...</div>
 <style>
-  /* Estilos generales del navbar */
-  .navbar {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    background-color: #007bff; /* Fondo azul */
-    overflow: hidden;
+  #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    z-index: 1000;
+    transition: opacity 0.5s ease-out;
+  }
+
+  /* Estilos generales */
+  body {
+    margin: 0;
+    font-family: "Lexend Deca", serif;
+    background-color: #f4f4f4;
+  }
+
+  /* Barra de navegación */
+  #nav {
+    background: linear-gradient(45deg, #5A3E1B, #8B5E3C);
     padding: 10px 20px;
   }
 
-  /* Sección del logo y nombre del hotel */
+  .menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  /* Logo y nombre */
   .logo-section {
     display: flex;
     align-items: center;
   }
 
   #imgLogo {
-    width: 50px; /* Ajusta el tamaño del logo */
+    width: 65px;
+    height: 34px;
     margin-right: 10px;
+    border-radius: 70px;
+    overflow: hidden;
+    box-shadow: 0px 0px 2px 2px rgb(255 255 255 / 50%);
+  }
+
+  #imgLogo img{
+    background-size: contain;
+    width: 100%;
   }
 
   .hotel-name {
@@ -56,63 +90,117 @@
     font-size: 1.5em;
   }
 
-  /* Estilos de los links */
+  /* Menú de navegación */
+  .navbar {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 4px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .navbar li {
+    margin: 0 10px;
+  }
+
   .navbar li a {
     color: white;
     text-decoration: none;
-    padding: 14px 20px;
+    padding: 10px 15px;
     display: block;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
   }
 
   .navbar li a:hover {
-    background-color: #0056b3; /* Color de fondo al pasar el mouse */
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
-  /* Estilos del icono y link de logout */
-  .logout {
-    float: right;
+  /* Botón menú hamburguesa */
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
   }
 
+  /* Logout */
   .logout-icon {
     width: 20px;
     vertical-align: middle;
     margin-right: 8px;
   }
 
-  /* Estilo para hacer el navbar responsive */
+  .buttonLogOut{
+    background-color: #e63e32;
+  }
+
+  input{
+    border: #b2b2b2 1px solid;
+    border-radius: 8px;
+    padding: 2px 10px;
+  }
+
+  /* Estilos Responsivos */
   @media (max-width: 768px) {
     .navbar {
+      display: none;
       flex-direction: column;
+      width: 100%;
+      background: linear-gradient(45deg, #5A3E1B, #8B5E3C);
+      position: absolute;
+      top: 60px;
+      left: 0;
       text-align: center;
+      z-index: 1000;
     }
 
     .navbar li {
-      margin-bottom: 10px;
+      margin: 0;
+      width: 100%;
     }
 
-    .logout {
-      float: none;
+    .navbar li a {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    .navbar.show {
+      display: flex;
     }
   }
 
-  #nav li ul {
-    display: none;
-    position: absolute;
-    background-color: transparent;
-    color: black;
-  }
-
-  #nav li:hover ul {
-    display: block;
-    z-index: 1;
-  }
-
-  #nav li ul li {
-    float: none;
-    display: block;
-  }
-  .navbar li .sub-menu2 {
-    color: aqua;
-  }
 </style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navbar = document.querySelector(".navbar");
+
+    menuToggle.addEventListener("click", function () {
+      navbar.classList.toggle("show");
+    });
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+
+    window.onload = function () {
+      const loader = document.getElementById("loader");
+
+      // Ocultamos el loader con un efecto fade-out
+      loader.style.opacity = "0";
+
+      // Mostramos el contenido y el body
+      setTimeout(() => {
+        loader.style.display = "none";
+        document.body.style.visibility = "visible";
+      }, 500); // Espera para el fade-out
+    };
+  });
+
+</script>

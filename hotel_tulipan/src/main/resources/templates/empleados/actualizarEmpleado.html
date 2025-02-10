@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Actualizar Empleado</title>
@@ -7,51 +9,54 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<div class="container my-4">
+<div class="containerDiv">
     <h1>Actualizar Empleado</h1>
-    <form th:action="@{/empleados/actualizarEmpleado}" th:object="${empleado}" method="post">
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+    <div class="table-content card-glass mt-3">
+        <form th:action="@{/empleados/actualizarEmpleado}" th:object="${empleado}" method="post">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <div >
+                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <div >
+                    <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="estado" class="form-label">Estado</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="estado" th:field="*{estado}" required>
+            <div class="mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <div >
+                    <input type="text" class="form-control" id="estado" th:field="*{estado}" required>
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="fechaContratacion" class="form-label">Fecha de Contratación</label>
-            <div class="col-sm-3">
-                <input type="date" class="form-control" id="fechaContratacion" th:field="*{fechaContratacion}">
+            <div class="mb-3">
+                <label for="fechaContratacion" class="form-label">Fecha de Contratación</label>
+                <div >
+                    <input type="date" class="form-control" id="fechaContratacion" th:field="*{fechaContratacion}">
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="cargo" class="form-label">Cargo</label>
-            <div class="col-sm-3">
-                <select th:field="*{cargo.idCargo}" id="cargo" class="form-control">
-                    <option value="" disabled selected>Seleccione un cargo</option>
-                    <option th:each="cargo : ${listarCargos}"
-                            th:value="${cargo.idCargo}"
-                            th:text="${cargo.descripcion}"
-                            th:selected="${cargo.idCargo} == ${empleado.cargo.idCargo}"></option>
-                </select>
+            <div class="mb-3">
+                <label for="cargo" class="form-label">Cargo</label>
+                <div >
+                    <select th:field="*{cargo.idCargo}" id="cargo" class="form-control">
+                        <option value="" disabled selected>Seleccione un cargo</option>
+                        <option th:each="cargo : ${listarCargos}"
+                                th:value="${cargo.idCargo}"
+                                th:text="${cargo.descripcion}"
+                                th:selected="${cargo.idCargo} == ${empleado.cargo.idCargo}"></option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <input type="hidden" th:field="*{idEmpleado}" />
-        <input type="hidden" th:field="*{usuario.idUsuario}" />
-        <input type="hidden" th:field="*{usuario.contrasena}" />
-        <input type="hidden" th:field="*{usuario.nombreUsuario}" />
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-    </form>
+            <input type="hidden" th:field="*{idEmpleado}" />
+            <input type="hidden" th:field="*{usuario.idUsuario}" />
+            <input type="hidden" th:field="*{usuario.contrasena}" />
+            <input type="hidden" th:field="*{usuario.nombreUsuario}" />
+            <button type="submit" class="btn action-button">Actualizar</button>
+        </form>
+    </div>
+
 </div>
 </body>
 </html>

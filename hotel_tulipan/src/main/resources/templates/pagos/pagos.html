@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <title>Administración de cargos</title>
@@ -7,35 +9,37 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
-<div class="container my-2">
+<h3>¡Hola, <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>! Tu espacio de gestión está listo.😊  </h3>
+<div class="containerDiv">
   <h1>Listado de Pagos</h1>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Id de Pago </th>
-      <th>Fecha de pago</th>
-      <th>Metodo de pago</th>
-      <th>Monto de pago</th>
-      <th>Huesped pagador </th>
+  <div class="table-content card-glass">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id de Pago </th>
+        <th>Fecha de pago</th>
+        <th>Metodo de pago</th>
+        <th>Monto de pago</th>
+        <th>Huesped pagador </th>
 
-      <th>Acción</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="pago : ${listaPagos}">
-      <td th:text="${pago.getIdPago()}"></td>
-      <td th:text="${pago.getFechaPago()}"></td>
-      <td th:text="${pago.getMetodoPago()()}"></td>
-      <td th:text="${pago.getMonto()}"></td>
-      <td th:text="${pago.reserva.getHuesped()}"></td>
-      <td>
-        <a th:href="@{/proveedores/actualizarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-primary">Actualizar</a>
-        <a th:href="@{/proveedores/eliminarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        <th>Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="pago : ${listaPagos}">
+        <td th:text="${pago.getIdPago()}"></td>
+        <td th:text="${pago.getFechaPago()}"></td>
+        <td th:text="${pago.getMetodoPago()()}"></td>
+        <td th:text="${pago.getMonto()}"></td>
+        <td th:text="${pago.reserva.getHuesped()}"></td>
+        <td>
+          <a th:href="@{/proveedores/actualizarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-primary">Actualizar</a>
+          <a th:href="@{/proveedores/eliminarCargo/{id}(id=${cargo.getIdCargo()})}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </body>
 </html>

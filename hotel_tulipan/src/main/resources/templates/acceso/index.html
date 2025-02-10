@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Bienvenida al Sistema</title>
@@ -29,15 +31,28 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra de texto */
             margin-top: 50px; /* Espacio superior */
         }
+        .boxIcon{
+            justify-self: center;
+            width: 37vw;
+            min-width: 340px;
+            height: auto;
+            border-radius: 18px;
+            overflow: auto;
+        }
+        .boxIcon-img{
+            width: 100%;
+        }
     </style>
 </head>
 <body >
 
 <div th:replace="comun/menu.html"></div>
 
-<h1 class="titulo-bienvenida">Bienvenido al Hotel Tulipán</h1>
-<h3 style="text-align: center">  Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>
 
-<h1 class="titulo-bienvenida2">Sistema hotelero</h1>
+<h3> ¡Hola, <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>! Tu espacio de gestión está listo.😊</h3>
+
+<div class="boxIcon">
+    <img src="/images/iconoHotel.PNG"  class="boxIcon-img" alt="Logo del Hotel">
+</div>
 </body>
 </html>

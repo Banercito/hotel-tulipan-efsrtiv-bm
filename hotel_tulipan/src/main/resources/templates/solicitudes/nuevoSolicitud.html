@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Nuevo Empleado</title>
@@ -7,26 +9,29 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<div class="container my-4">
+<div class="containerDiv">
     <h1>Nuevo Empleado</h1>
-    <form th:action="@{/solicitudes/guardarSolicitud}" th:object="${solicitudDeServicios}" method="post">
+    <div class="table-content card-glass">
+        <form th:action="@{/solicitudes/guardarSolicitud}" th:object="${solicitudDeServicios}" method="post">
 
 
 
 
-        <div class="mb-3">
-            <label for="cargo" class="form-label">Cargo </label>
-            <div class="col-sm-3">
-                <select th:field="*{servicioAdicional.idServicioAdicional}" id="cargo" class="form-control">
-                    <option value="" disabled selected>Seleccione un cargo</option>
-                    <option th:each="serviciosAdicionales : ${listarServiciosAdicionales}"
-                            th:value="${serviciosAdicionales.idServicioAdicional}"
-                            th:text="${serviciosAdicionales.nombre}"></option>
-                </select>
+            <div class="mb-3">
+                <label for="cargo" class="form-label">Cargo </label>
+                <div class="col-sm-3">
+                    <select th:field="*{servicioAdicional.idServicioAdicional}" id="cargo" class="form-control">
+                        <option value="" disabled selected>Seleccione un cargo</option>
+                        <option th:each="serviciosAdicionales : ${listarServiciosAdicionales}"
+                                th:value="${serviciosAdicionales.idServicioAdicional}"
+                                th:text="${serviciosAdicionales.nombre}"></option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-    </form>
+        </form>
+    </div>
+
 </div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <title>Administración de Huéspedes</title>
@@ -7,54 +9,57 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
+<h3>¡Hola, <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>! Tu espacio de gestión está listo.😊</h3>
 
-<div class="container my-2">
-  <form th:action="@{/huespedes/busquedaHuesped}" method="get">
+<div class="containerDiv">
+  <a th:href="@{/huespedes/nuevoHuesped}" class="btn action-button btn-sm mb-3  new-actor"> Nuevo Huésped </a>
+  <h1>Listado de Huéspedes</h1>
+
+  <form th:action="@{/huespedes/busquedaHuesped}" method="get" class="search-input">
     <label for="filtro">Buscar</label>
     <input type="text" id="filtro" name="filtro" th:value="${filtro != null ? filtro : ''}" placeholder="Ingresa el filtro aquí">
-    <button type="submit" class="btn btn-primary btn-sm mb-2">Buscar</button>
+    <button type="submit" class="btn btn-sm action-button">Buscar</button>
   </form>
-  <hr>
-  <h1>Listado de Huéspedes</h1>
-  <a th:href="@{/huespedes/nuevoHuesped}" class="btn btn-primary btn-sm mb-3"> Nuevo Huésped </a>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Documento de Identidad</th>
-      <th>Correo Electrónico</th>
-      <th>Dirección</th>
-      <th>Teléfono</th>
+  <div class="table-content card-glass">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Documento de Identidad</th>
+        <th>Correo Electrónico</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
 
-      <th>Fecha Nacimiento</th>
-      <th>Estado</th>
-      <th>Fecha Registro</th>
-      <th>Acción</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="huesped : ${listaHuespedes}">
-      <td th:text="${huesped.getIdHuesped()}"></td>
-      <td th:text="${huesped.getNombre()}"></td>
-      <td th:text="${huesped.getApellido()}"></td>
-      <td th:text="${huesped.getNumeroDocumento()}"></td>
-      <td th:text="${huesped.getCorreo()}"></td>
-      <td th:text="${huesped.getDireccion()}"></td>
-      <td th:text="${huesped.getTelefono()}"></td>
-      <td th:text="${#dates.format(huesped.getFechaNac(), 'yyyy-MM-dd')}"></td>
-      <td th:text="${huesped.getEstado()}"></td>
-      <td th:text="${#dates.format(huesped.getFechaReg(), 'yyyy-MM-dd')}"></td>
+        <th>Fecha Nacimiento</th>
+        <th>Estado</th>
+        <th>Fecha Registro</th>
+        <th>Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="huesped : ${listaHuespedes}">
+        <td th:text="${huesped.getIdHuesped()}"></td>
+        <td th:text="${huesped.getNombre()}"></td>
+        <td th:text="${huesped.getApellido()}"></td>
+        <td th:text="${huesped.getNumeroDocumento()}"></td>
+        <td th:text="${huesped.getCorreo()}"></td>
+        <td th:text="${huesped.getDireccion()}"></td>
+        <td th:text="${huesped.getTelefono()}"></td>
+        <td th:text="${#dates.format(huesped.getFechaNac(), 'yyyy-MM-dd')}"></td>
+        <td th:text="${huesped.getEstado()}"></td>
+        <td th:text="${#dates.format(huesped.getFechaReg(), 'yyyy-MM-dd')}"></td>
 
-      <td>
-        <a th:href="@{/huespedes/actualizarHuesped/{id}(id=${huesped.idHuesped})}" class="btn btn-primary">Actualizar</a>
-        <a th:href="@{/huespedes/eliminarHuesped/{id}(id=${huesped.idHuesped})}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        <td class="table-action-button">
+          <a th:href="@{/huespedes/actualizarHuesped/{id}(id=${huesped.idHuesped})}" class="btn btn-primary">Actualizar</a>
+          <a th:href="@{/huespedes/eliminarHuesped/{id}(id=${huesped.idHuesped})}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 </body>
 </html>

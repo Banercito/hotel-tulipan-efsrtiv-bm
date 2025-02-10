@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Administración de proveedores</title>
@@ -7,46 +9,50 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
+<h3>¡Hola, <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>! Tu espacio de gestión está listo.😊</h3>
 
 
-<div class="container my-2">
-    <form th:action="@{/proveedores/busquedaProveedor}" method="get">
+<div class="containerDiv">
+    <a th:href="@{/proveedores/nuevoProveedor}" class="btn action-button btn-sm mb-3  new-actor">Nuevo Proveedor</a>
+    <h1>Listado de Proveedores</h1>
+
+    <form th:action="@{/proveedores/busquedaProveedor}" method="get" class="search-input">
         <label for="filtro">Buscar</label>
         <input type="text" id="filtro" name="filtro" th:value="${filtro != null ? filtro : ''}">
-        <button type="submit" class="btn btn-primary btn-sm mb-3">Buscar</button>
+        <button type="submit" class="btn action-button btn-sm ">Buscar</button>
     </form>
-    <h1>Listado de Proveedores</h1>
-    <a th:href="@{/proveedores/nuevoProveedor}" class="btn btn-primary btn-sm mb-3">Nuevo Proveedor</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID Proveedor</th>
-            <th>Nombre de la Empresa</th>
-            <th>Contacto</th>
-            <th>Teléfono</th>
-            <th>Correo Electrónico</th>
-            <th>Estado</th>
-            <th>Dirección</th>
-            <th>Acción</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="proveedor : ${listaProveedores}">
-            <td th:text="${proveedor.getIdProveedor()}"></td>
-            <td th:text="${proveedor.getNombre()}"></td>
-            <td th:text="${proveedor.getContacto()}"></td>
-            <td th:text="${proveedor.getTelefono()}"></td>
-            <td th:text="${proveedor.getCorreo()}"></td>
-            <td th:text="${proveedor.getEstado()}"></td>
-            <td th:text="${proveedor.getDireccion()}"></td>
-            <td>
-                <a th:href="@{/proveedores/actualizarProveedor/{id}(id=${proveedor.getIdProveedor()})}" class="btn btn-primary">Actualizar</a>
-                <a th:href="@{/proveedores/eliminarProveedor/{id}(id=${proveedor.getIdProveedor()})}" class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-content card-glass">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID Proveedor</th>
+                <th>Nombre de la Empresa</th>
+                <th>Contacto</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+                <th>Estado</th>
+                <th>Dirección</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="proveedor : ${listaProveedores}">
+                <td th:text="${proveedor.getIdProveedor()}"></td>
+                <td th:text="${proveedor.getNombre()}"></td>
+                <td th:text="${proveedor.getContacto()}"></td>
+                <td th:text="${proveedor.getTelefono()}"></td>
+                <td th:text="${proveedor.getCorreo()}"></td>
+                <td th:text="${proveedor.getEstado()}"></td>
+                <td th:text="${proveedor.getDireccion()}"></td>
+                <td class="table-action-button">
+                    <a th:href="@{/proveedores/actualizarProveedor/{id}(id=${proveedor.getIdProveedor()})}" class="btn btn-primary">Actualizar</a>
+                    <a th:href="@{/proveedores/eliminarProveedor/{id}(id=${proveedor.getIdProveedor()})}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 </body>
 </html>

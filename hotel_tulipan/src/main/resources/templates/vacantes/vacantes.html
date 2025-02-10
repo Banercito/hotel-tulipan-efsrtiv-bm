@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <title>Administración de Vacantes</title>
@@ -7,34 +9,36 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
-<div class="container my-2">
+<h3>¡Hola, <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>! Tu espacio de gestión está listo.😊</h3>
+<div class="containerDiv">
   <h1>Listado de Vacantes</h1>
-  <a th:href="@{/vacantes/nuevoVacante}" class="btn btn-primary btn-sm mb-3">Nueva Vacante</a>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Descripcion</th>
-      <th>Fecha</th>
-      <th>Cargo</th>
-      <th>Descripcion</th>
-      <th>Acción</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="vacante : ${listaVacantes}">
-      <td th:text="${vacante.getIdVacante()}"></td>
-      <td th:text="${vacante.getDescripcion()}"></td>
-      <td th:text="${#dates.format(vacante.getFechaPublicacion(), 'yyyy-MM-dd')}"></td>
-      <td th:text="${vacante.cargo.descripcion}"></td>
-      <td>
-        <a th:href="@{/vacantes/actualizarVacante/{id}(id=${vacante.idVacante})}" class="btn btn-primary">Actualizar</a>
-        <a th:href="@{/vacantes/eliminarVacante/{id}(id=${vacante.idVacante})}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <a th:href="@{/vacantes/nuevoVacante}" class="btn  action-button  btn-sm mb-3  new-actor">Nueva Vacante</a>
+  <div class="table-content card-glass">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descripcion</th>
+        <th>Fecha</th>
+        <th>Cargo</th>
+        <th>Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="vacante : ${listaVacantes}">
+        <td th:text="${vacante.getIdVacante()}"></td>
+        <td th:text="${vacante.getDescripcion()}"></td>
+        <td th:text="${#dates.format(vacante.getFechaPublicacion(), 'yyyy-MM-dd')}"></td>
+        <td th:text="${vacante.cargo.descripcion}"></td>
+        <td class="table-action-button">
+          <a th:href="@{/vacantes/actualizarVacante/{id}(id=${vacante.idVacante})}" class="btn btn-primary">Actualizar</a>
+          <a th:href="@{/vacantes/eliminarVacante/{id}(id=${vacante.idVacante})}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 </body>
 </html>
