@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <title>Administración de Postulantes</title>
@@ -7,37 +9,40 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<h3 style="text-align: center">Sr(a). <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span></h3>
-<div class="container my-2">
+<h3>¡Hola, <span th:text="${usuario.empleado.nombre} + ' ' + ${usuario.empleado.apellido}"></span>! Tu espacio de gestión está listo.😊</h3>
+<div class="containerDiv">
   <h1>Listado de Postulantes</h1>
-  <a th:href="@{/postulantes/nuevoPostulante}" class="btn btn-primary btn-sm mb-3">Nuevo Postulante</a>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Correo</th>
-      <th>Vacante</th>
-      <th>Telefono</th>
-      <th>Acción</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="postulante : ${listaPostulantes}">
-      <td th:text="${postulante.getIdPostulante()}"></td>
-      <td th:text="${postulante.getNombre()}"></td>
-      <td th:text="${postulante.getApellido()}"></td>
-      <td th:text="${postulante.getCorreo()}"></td>
-      <td th:text="${postulante.vacante.descripcion}"></td>
-      <td th:text="${postulante.getTelefono()}"></td>
-      <td>
-        <a th:href="@{/postulantes/actualizarPostulante/{id}(id=${postulante.idPostulante})}" class="btn btn-primary">Actualizar</a>
-        <a th:href="@{/postulantes/eliminarPostulante/{id}(id=${postulante.idPostulante})}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <a th:href="@{/postulantes/nuevoPostulante}" class="btn  action-button  btn-sm mb-3  new-actor">Nuevo Postulante</a>
+  <div class="table-content card-glass">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Vacante</th>
+        <th>Telefono</th>
+        <th>Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="postulante : ${listaPostulantes}">
+        <td th:text="${postulante.getIdPostulante()}"></td>
+        <td th:text="${postulante.getNombre()}"></td>
+        <td th:text="${postulante.getApellido()}"></td>
+        <td th:text="${postulante.getCorreo()}"></td>
+        <td th:text="${postulante.vacante.descripcion}"></td>
+        <td th:text="${postulante.getTelefono()}"></td>
+        <td class="table-action-button">
+          <a th:href="@{/postulantes/actualizarPostulante/{id}(id=${postulante.idPostulante})}" class="btn btn-primary">Actualizar</a>
+          <a th:href="@{/postulantes/eliminarPostulante/{id}(id=${postulante.idPostulante})}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 </body>
 </html>

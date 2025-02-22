@@ -2,25 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Hotel Rey</title>
-  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Hotel Tulipan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+    *{
+      font-family: "Lexend Deca", serif;
     }
+    body,button {
+      margin: 0;
+      font-family: "Lexend Deca", serif;
+    }
+
 
     main {
       position: relative;
       height: 100vh;
-     background: url('http://imgfz.com/i/WXanxfS.jpeg') no-repeat center center/cover;
+      overflow: hidden;
+    }
+
+    .background{
+      height: 100vh;
+      background: url("/images/hotel.png") no-repeat center top/cover;
+      background-color: #5A3E1B;
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out forwards;
+      overflow: hidden;
     }
 
     .overlay {
       position: absolute;
-      top: 50%;
+      top: 56%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -2%);
       text-align: center;
       color: white;
     }
@@ -30,15 +45,45 @@
       margin: 0;
     }
 
+    .button {
+      background: linear-gradient(45deg,  #5A3E1B, #8B5E3C);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0px 0px 0px 4px rgb(255 255 255 / 50%);
+      transition: all 0.3s ease;
+    }
+    .button:hover {
+      background: linear-gradient(45deg, #8B5E3C, #5A3E1B);
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
   </style>
 </head>
 <body>
-<div th:replace="comun/menuIndex.html"></div>
+<!--<div th:replace="comun/menuIndex.html"></div>-->
 <main>
-  <div class="overlay">
-    <h1>Hotel Tulipán</h1>
-
-  </div>
+  <section class="background">
+    <div class="overlay">
+      <!--    <h1>Hotel Tulipán</h1>-->
+      <button class="button" onclick="window.location.href='/acceso/login'">Iniciar Sesión</button>
+    </div>
+  </section>
 </main>
 </body>
 </html>

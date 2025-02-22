@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Nuevo huésped</title>
@@ -8,12 +10,9 @@
 
 <body>
 <div th:replace="comun/menu.html"></div>
-<div class="container">
-    <h1> Administración de huéspedes </h1>
-    <hr>
+<div class="containerDiv">
     <h2> Nuevo Huésped</h2>
-    <div class="row justify-content-left">
-        <div class="col-md-12">
+    <div class="table-content card-glass mt-3">
             <form th:action="@{/huespedes/guardarHuesped}" th:object="${huesped}" method="post">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -47,10 +46,9 @@
                 <input type="hidden" th:field="*{estado}"/>
 
                 <input type="hidden" th:field="*{fechaReg}" />
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn action-button">Guardar</button>
             </form>
         </div>
-    </div>
 </div>
 </body>
 </html>

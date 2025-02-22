@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <title>Actualizar cargo</title>
@@ -7,18 +9,21 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<div class="container my-4">
+<div class="containerDiv">
   <h1>Actualizar Cargo</h1>
-  <form th:action="@{/cargos/guardarCargo}" th:object="${cargo}" method="post">
-    <input type="hidden" th:field="*{idCargo}">
-    <div class="mb-3">
-      <label for="descripcion" class="form-label">Nombre del cargo</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" required>
+  <div class="table-content card-glass">
+    <form th:action="@{/cargos/guardarCargo}" th:object="${cargo}" method="post">
+      <input type="hidden" th:field="*{idCargo}">
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Nombre del cargo</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" required>
+        </div>
       </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-  </form>
+      <button type="submit" class="btn action-button">Guardar</button>
+    </form>
+  </div>
+
 </div>
 </body>
 </html>

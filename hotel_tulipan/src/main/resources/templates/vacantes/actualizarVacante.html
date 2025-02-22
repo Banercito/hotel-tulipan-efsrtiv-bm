@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commonStyles.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>Actualizar Vacante</title>
@@ -7,41 +9,44 @@
 </head>
 <body>
 <div th:replace="comun/menu.html"></div>
-<div class="container my-4">
-    <h1>Actualizar Proveedor</h1>
-    <form th:action="@{/vacantes/guardarVacante}" th:object="${vacante}" method="post">
-        <input type="hidden" th:field="*{idVacante}">
-        <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripcion</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}">
+<div class="containerDiv">
+    <h1>Actualizar Vacante</h1>
+    <div class="table-content card-glass mt-3">
+        <form th:action="@{/vacantes/guardarVacante}" th:object="${vacante}" method="post">
+            <input type="hidden" th:field="*{idVacante}">
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripcion</label>
+                <div>
+                    <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}">
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="fechaPublicacion" class="form-label">Fecha de Publicacion</label>
-            <div class="col-sm-3">
-                <input type="date" class="form-control" id="fechaPublicacion" th:field="*{fechaPublicacion}">
+            <div class="mb-3">
+                <label for="fechaPublicacion" class="form-label">Fecha de Publicacion</label>
+                <div>
+                    <input type="date" class="form-control" id="fechaPublicacion" th:field="*{fechaPublicacion}">
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="cargo" class="form-label">Cargo </label>
-            <div class="col-sm-3">
-                <select th:field="*{cargo.idCargo}" id="cargo" class="form-control">
-                    <option value="" disabled selected>Seleccione un cargo</option>
-                    <option th:each="cargo : ${listarCargos}"
-                            th:value="${cargo.idCargo}"
-                            th:text="${cargo.descripcion}"></option>
-                </select>
+            <div class="mb-3">
+                <label for="cargo" class="form-label">Cargo </label>
+                <div >
+                    <select th:field="*{cargo.idCargo}" id="cargo" class="form-control">
+                        <option value="" disabled selected>Seleccione un cargo</option>
+                        <option th:each="cargo : ${listarCargos}"
+                                th:value="${cargo.idCargo}"
+                                th:text="${cargo.descripcion}"></option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="titulo" class="form-label">Titulo</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="titulo" th:field="*{titulo}">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Titulo</label>
+                <div>
+                    <input type="text" class="form-control" id="titulo" th:field="*{titulo}">
+                </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
+            <button type="submit" class="btn action-button">Guardar</button>
+        </form>
+    </div>
+
 </div>
 </body>
 </html>

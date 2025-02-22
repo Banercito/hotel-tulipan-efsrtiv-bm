@@ -4,15 +4,16 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "suministros")
+@Table(name = "suministro")
 @Data
 @Getter
 @Setter
-public class Suministros {
+public class Suministro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_suministro")
@@ -26,7 +27,9 @@ public class Suministros {
 
     @Column(name = "fecha_adquisicion", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaAdquisicion;
+
 
     @ManyToOne
     @JoinColumn(name = "id_proveedor", nullable = false)

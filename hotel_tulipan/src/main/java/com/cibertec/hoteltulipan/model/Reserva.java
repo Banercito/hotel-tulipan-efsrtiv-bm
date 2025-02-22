@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -22,14 +23,16 @@ public class Reserva {
     private Integer cantidadHuespedes;
 
     @Column(name = "estado", length = 10, nullable = false)
-    private String estado = "P";
+    private String estado = "Pendiente";
 
     @Column(name = "fecha_inicio", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaInicio;
 
     @Column(name = "fecha_fin", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaFin;
 
     @ManyToOne

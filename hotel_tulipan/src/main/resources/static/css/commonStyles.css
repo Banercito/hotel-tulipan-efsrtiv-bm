@@ -1,0 +1,74 @@
+* {
+    font-family: "Lexend Deca", serif;
+}
+h3{
+    text-align: left;
+    margin: 30px 20px !important;
+}
+
+.containerDiv{
+    margin: 30px 20px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-input{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    margin-bottom: 30px;
+}
+
+.new-actor{
+    width: fit-content;
+    margin-left: auto;
+}
+.action-button {
+    background: linear-gradient(45deg,  #5A3E1B, #8B5E3C) !important;
+    color: white !important;
+    box-shadow: 0px 0px 0px 4px rgb(255 255 255 / 50%);
+    transition: all 0.3s ease !important;
+}
+.action-button:hover  {
+    background: linear-gradient(45deg, #8B5E3C, #5A3E1B);
+    transform: scale(1.05);
+}
+.navbar li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.table-content{
+    overflow: auto;
+}
+.table-content form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.table-content form button{
+    width: fit-content;
+    align-self: center;
+}
+.table-action-button{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.card-glass{
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+tr td, tr th{
+    place-content: center;
+}
+
+body {
+    background: url("../images/icon-background.png") repeat;
+    background-size: 65px 65px;
+    background-blend-mode: overlay;
+}
