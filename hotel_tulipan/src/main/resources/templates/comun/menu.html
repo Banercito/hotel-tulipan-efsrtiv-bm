@@ -16,11 +16,11 @@
     <li><a th:href="@{/proveedores/listarProveedores}">Proveedores</a></li>
     <li><a th:href="@{/huespedes/listarHuespedes}">Huéspedes</a></li>
     <li><a th:href="@{/solicitudes/listarSolicitudes}">Servicios adicionales</a></li>
-    <li><a th:href="@{/reserva/listarReserva}">Reserva</a></li>
+    <li><a th:href="@{/reservas/listarReservas}">Reserva</a></li>
     <li><a th:href="@{/suministros/listarSuministros}">Suministros</a></li>
     <li class="logout">
       <a th:href="@{/acceso/logout}" class="buttonLogOut">
-        <img src="http://imgfz.com/i/nyd9eNg.png" alt="Logout Icon" class="logout-icon">
+
         Logout
       </a>
     </li>
@@ -202,5 +202,16 @@
       }, 500); // Espera para el fade-out
     };
   });
+  const pathName = window.location.pathname;
+  const pathSegments = pathName.split("/").filter(seg => seg !== "");
+  const modulo = pathSegments[0];
 
+  const menuItems = document.querySelectorAll(".navbar li a");
+
+  menuItems.forEach(item => {
+    const href = item.getAttribute("href");
+    if (href && href.includes(`/${modulo}`)) {
+      item.classList.add("active");
+    }
+  });
 </script>
