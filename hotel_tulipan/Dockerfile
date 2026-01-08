@@ -4,19 +4,17 @@ FROM eclipse-temurin:17-jdk-alpine
 # Directorio de trabajo
 WORKDIR /app
 
-# Copiar pom y dependencias
-COPY pom.xml .
-RUN apk add --no-cache maven \
-    && mvn dependency:go-offline
+# Instalar Maven
+RUN apk add --no-cache maven
 
-# Copiar el proyecto
+# Copiar archivos del proyecto
 COPY . .
 
 # Construir la app
 RUN mvn clean package -DskipTests
 
-# Puerto dinámico (Render)
+# Exponer puerto (Render usa el 8080)
 EXPOSE 8080
 
-# Ejecutar la app
-CMD ["java", "-jar", "target/*.jar"]
+# Ejecutar el JAR exacto (SIN comodines)
+CMD ["java", "-jar", "target/hoteltulipan-0.0.1-SNAPSHOT.jar"]
